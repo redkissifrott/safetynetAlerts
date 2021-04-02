@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import fr.redkissifrott.safetynetAlerts.util.DateFromString;
+import fr.redkissifrott.safetynetAlerts.initialDataFronJsonToDB.DateFromString;
 import lombok.Data;
 
 @Data
