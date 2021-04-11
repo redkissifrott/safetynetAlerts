@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<Configuration xmlns="http://logging.apache.org/log4j/2.0/config" status="WARN">
+
+<appenders>
+	<console name="console" target="SYSTEM_OUT">
+		<PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
+	</console>
+ 
+ 	<file name="file" fileName="safetynetAlarms.log" append="false">
+		<PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
+	</file>
+</appenders>
+
+<loggers> 
+	<root additivity="false" level="info">
+    	<appender-ref ref="console" />
+    	<appender-ref ref="file" level="error"/>
+	</root>
+
+	<logger name="fr.redkissifrott.safetynetAlerts" level="debug" additivity="false">
+		<appender-ref ref="file" />
+		<appender-ref ref="console" />
+	</logger>
+</loggers>
+	
+
+</Configuration>
