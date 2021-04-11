@@ -1,4 +1,4 @@
-package fr.redkissifrott.safetynetAlerts.controller.integration;
+package fr.redkissifrott.safetynetAlerts.controller.IT;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;

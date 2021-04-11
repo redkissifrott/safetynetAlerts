@@ -60,17 +60,18 @@ public class PersonController {
 	}
 
 	/**
-	 * Update - Update an existing person
+	 * * Update - Update an existing person
 	 * 
-	 * @param id     - The id of the person to update
-	 * @param person - The person object updated
-	 * @return
+	 * @param firstName
+	 * @param lastName
+	 * @param person    - The person object to update
+	 * @return The person object updated
 	 */
 	@PutMapping("/person/{firstName} {lastName}")
 	public ResponseEntity<Person> updatePerson(@PathVariable("firstName") final String firstName,
 			@PathVariable("lastName") final String lastName, @RequestBody Person person) {
 
-		logger.info("Update request : PUT http://localhost:8080/person/{} {} - Body :{}", firstName, lastName, person);
+		logger.info("Update request : PUT http://localhost:8080/person/{} {} - Body : {}", firstName, lastName, person);
 
 		Optional<Person> personInDB = personService.getPerson(firstName, lastName);
 		if (personInDB.isPresent()) {
@@ -98,7 +99,7 @@ public class PersonController {
 			}
 			personService.savePerson(currentPerson);
 
-			logger.info("Return : Body :{}", currentPerson);
+			logger.info("Return : Body : {}", currentPerson);
 
 			return ResponseEntity.ok().body(currentPerson);
 		} else {
