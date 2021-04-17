@@ -8,8 +8,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.Optional;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -95,8 +93,8 @@ public class PersonControllerIT {
 	@Rollback(false)
 	public void deletePersonTest() throws Exception {
 		mockMvc.perform(delete("/person/CreatedFirstName CreatedLastName")).andExpect(status().isOk());
-		Optional<Person> deletedPerson = personService.getPerson("CreatedFirstName", "CreatedLastName");
-		assertThat(deletedPerson).isEmpty();
+		Person deletedPerson = personService.getPerson("CreatedFirstName", "CreatedLastName");
+		assertThat(deletedPerson).isNull();
 
 	}
 
@@ -106,8 +104,8 @@ public class PersonControllerIT {
 	public void deletePersonNotFoundTest() throws Exception {
 		mockMvc.perform(delete("/person/NotCreatedFirstName NotCreatedLastName").accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound());
-		Optional<Person> deletedPerson = personService.getPerson("CreatedFirstName", "CreatedLastName");
-		assertThat(deletedPerson).isNotEmpty();
+		Person deletedPerson = personService.getPerson("CreatedFirstName", "CreatedLastName");
+		assertThat(deletedPerson).isNotNull();
 	}
 
 }

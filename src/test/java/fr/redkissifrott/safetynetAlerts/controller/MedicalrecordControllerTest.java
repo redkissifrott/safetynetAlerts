@@ -6,8 +6,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.Optional;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -36,7 +34,7 @@ public class MedicalrecordControllerTest {
 
 	@Test
 	public void updateMedicalrecordTest() throws Exception {
-		Optional<Medicalrecord> p = Optional.of(new Medicalrecord());
+		Medicalrecord p = new Medicalrecord();
 
 		when(medicalrecordService.getMedicalrecord("CreatedFirstName", "CreatedLastName")).thenReturn(p);
 		mockMvc.perform(
@@ -47,7 +45,7 @@ public class MedicalrecordControllerTest {
 
 	@Test
 	public void deleteMedicalrecordTest() throws Exception {
-		Optional<Medicalrecord> p = Optional.of(new Medicalrecord());
+		Medicalrecord p = new Medicalrecord();
 		when(medicalrecordService.getMedicalrecord("CreatedFirstName", "CreatedLastName")).thenReturn(p);
 		mockMvc.perform(delete("/medicalrecord/CreatedFirstName CreatedLastName")).andExpect(status().isOk());
 	}

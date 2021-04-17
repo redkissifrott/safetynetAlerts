@@ -10,9 +10,13 @@ import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
 @AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "persons")
 public class Person {

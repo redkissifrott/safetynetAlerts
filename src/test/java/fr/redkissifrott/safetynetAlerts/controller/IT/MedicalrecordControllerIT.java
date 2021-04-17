@@ -8,8 +8,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.Optional;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -88,8 +86,7 @@ public class MedicalrecordControllerIT {
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(
 						"{ \"birthdate\":\"03/06/1984\", \"medications\":[\"aznol:350mg\", \"hydrapermazol:100mg\"], \"allergies\":[\"nillacilan\"] }")
-				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isNotFound())
-				.andExpect(MockMvcResultMatchers.jsonPath("$").doesNotExist());
+				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isNotFound());
 	}
 
 	@Test
@@ -97,9 +94,9 @@ public class MedicalrecordControllerIT {
 	@Rollback(false)
 	public void deleteMedicalrecordTest() throws Exception {
 		mockMvc.perform(delete("/medicalrecord/CreatedFirstName CreatedLastName")).andExpect(status().isOk());
-		Optional<Medicalrecord> deletedMedicalrecord = medicalrecordService.getMedicalrecord("CreatedFirstName",
+		Medicalrecord deletedMedicalrecord = medicalrecordService.getMedicalrecord("CreatedFirstName",
 				"CreatedLastName");
-		assertThat(deletedMedicalrecord).isEmpty();
+		assertThat(deletedMedicalrecord).isNull();
 
 	}
 
@@ -110,9 +107,9 @@ public class MedicalrecordControllerIT {
 		mockMvc.perform(
 				delete("/medicalrecord/NotCreatedFirstName NotCreatedLastName").accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound());
-		Optional<Medicalrecord> deletedMedicalrecord = medicalrecordService.getMedicalrecord("CreatedFirstName",
+		Medicalrecord deletedMedicalrecord = medicalrecordService.getMedicalrecord("CreatedFirstName",
 				"CreatedLastName");
-		assertThat(deletedMedicalrecord).isNotEmpty();
+		assertThat(deletedMedicalrecord).isNotNull();
 	}
 
 }

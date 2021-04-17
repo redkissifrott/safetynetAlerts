@@ -1,7 +1,6 @@
 package fr.redkissifrott.safetynetAlerts.controller;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 import javax.validation.ConstraintViolationException;
 
@@ -75,10 +74,10 @@ public class MedicalrecordController {
 		logger.info("Update request : PUT http://localhost:8080/medicalrecord/{} {} - Body :{}", firstName, lastName,
 				medicalrecord);
 
-		Optional<Medicalrecord> medicalrecordInDB = medicalrecordService.getMedicalrecord(firstName, lastName);
+		Medicalrecord medicalrecordInDB = medicalrecordService.getMedicalrecord(firstName, lastName);
 		logger.info(medicalrecord.toString());
-		if (medicalrecordInDB.isPresent()) {
-			Medicalrecord currentMedicalrecord = medicalrecordInDB.get();
+		if (medicalrecordInDB != null) {
+			Medicalrecord currentMedicalrecord = medicalrecordInDB;
 
 			LocalDate birthdate = medicalrecord.getBirthdate();
 			if (birthdate != null) {
@@ -116,8 +115,8 @@ public class MedicalrecordController {
 			@PathVariable("lastName") final String lastName) {
 		logger.info("Delete request : DELETE http://localhost:8080/medicalrecord/{} {}", firstName, lastName);
 
-		Optional<Medicalrecord> medicalrecordInDB = medicalrecordService.getMedicalrecord(firstName, lastName);
-		if (medicalrecordInDB.isPresent()) {
+		Medicalrecord medicalrecordInDB = medicalrecordService.getMedicalrecord(firstName, lastName);
+		if (medicalrecordInDB != null) {
 			medicalrecordService.deleteMedicalrecord(firstName, lastName);
 			logger.info("Medicalrecord {} {} deleted", firstName, lastName);
 			return ResponseEntity.ok().body(medicalrecordInDB);

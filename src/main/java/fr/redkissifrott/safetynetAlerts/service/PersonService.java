@@ -1,7 +1,5 @@
 package fr.redkissifrott.safetynetAlerts.service;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +12,7 @@ public class PersonService {
 	@Autowired
 	private PersonRepository personRepository;
 
-	public Optional<Person> getPerson(String firstName, String lastName) {
+	public Person getPerson(String firstName, String lastName) {
 		return personRepository.findByFirstNameAndLastName(firstName, lastName);
 	}
 

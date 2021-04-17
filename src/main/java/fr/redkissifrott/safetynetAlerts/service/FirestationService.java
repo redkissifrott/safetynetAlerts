@@ -1,6 +1,6 @@
 package fr.redkissifrott.safetynetAlerts.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,12 +18,16 @@ public class FirestationService {
 		return firestationRepository.save(firestation);
 	}
 
-	public Optional<Firestation> getFirestation(String address) {
+	public Firestation getFirestation(String address) {
 		return firestationRepository.findByAddress(address);
 	}
 
 	public void deleteFirestation(String address) {
 		firestationRepository.deleteByAddress(address);
+	}
+
+	public List<String> getAddresses(String station) {
+		return firestationRepository.findByStation(station);
 	}
 
 }

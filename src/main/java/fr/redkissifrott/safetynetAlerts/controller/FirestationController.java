@@ -1,7 +1,5 @@
 package fr.redkissifrott.safetynetAlerts.controller;
 
-import java.util.Optional;
-
 import javax.validation.ConstraintViolationException;
 
 import org.slf4j.Logger;
@@ -60,9 +58,9 @@ public class FirestationController {
 
 		logger.info("Update request : PUT http://localhost:8080/firestation/{} - Body : {}", station);
 
-		Optional<Firestation> firestationInDB = firestationService.getFirestation(address);
-		if (firestationInDB.isPresent()) {
-			Firestation currentFirestation = firestationInDB.get();
+		Firestation firestationInDB = firestationService.getFirestation(address);
+		if (firestationInDB != null) {
+			Firestation currentFirestation = firestationInDB;
 			currentFirestation.setStation(station);
 			firestationService.saveFirestation(currentFirestation);
 
@@ -79,8 +77,8 @@ public class FirestationController {
 	public ResponseEntity<Object> deleteFirestation(@PathVariable("address") final String address) {
 		logger.info("Delete request : DELETE http://localhost:8080/firestation/{}", address);
 
-		Optional<Firestation> firestationInDB = firestationService.getFirestation(address);
-		if (firestationInDB.isPresent()) {
+		Firestation firestationInDB = firestationService.getFirestation(address);
+		if (firestationInDB != null) {
 			firestationService.deleteFirestation(address);
 			logger.info("Firestation {} {} deleted", address);
 			return ResponseEntity.ok().body(firestationInDB);

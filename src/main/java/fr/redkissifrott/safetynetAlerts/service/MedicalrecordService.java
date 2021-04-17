@@ -1,7 +1,5 @@
 package fr.redkissifrott.safetynetAlerts.service;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +12,7 @@ public class MedicalrecordService {
 	@Autowired
 	private MedicalrecordRepository medicalrecordRepository;
 
-	public Optional<Medicalrecord> getMedicalrecord(String firstName, String lastName) {
+	public Medicalrecord getMedicalrecord(String firstName, String lastName) {
 		return medicalrecordRepository.findByFirstNameAndLastName(firstName, lastName);
 	}
 

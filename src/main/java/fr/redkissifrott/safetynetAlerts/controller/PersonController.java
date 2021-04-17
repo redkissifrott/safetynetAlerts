@@ -1,7 +1,5 @@
 package fr.redkissifrott.safetynetAlerts.controller;
 
-import java.util.Optional;
-
 import javax.validation.ConstraintViolationException;
 
 import org.slf4j.Logger;
@@ -73,9 +71,9 @@ public class PersonController {
 
 		logger.info("Update request : PUT http://localhost:8080/person/{} {} - Body : {}", firstName, lastName, person);
 
-		Optional<Person> personInDB = personService.getPerson(firstName, lastName);
-		if (personInDB.isPresent()) {
-			Person currentPerson = personInDB.get();
+		Person personInDB = personService.getPerson(firstName, lastName);
+		if (personInDB != null) {
+			Person currentPerson = personInDB;
 
 			String address = person.getAddress();
 			if (address != null) {
@@ -120,8 +118,8 @@ public class PersonController {
 			@PathVariable("lastName") final String lastName) {
 		logger.info("Delete request : DELETE http://localhost:8080/person/{} {}", firstName, lastName);
 
-		Optional<Person> personInDB = personService.getPerson(firstName, lastName);
-		if (personInDB.isPresent()) {
+		Person personInDB = personService.getPerson(firstName, lastName);
+		if (personInDB != null) {
 			personService.deletePerson(firstName, lastName);
 			logger.info("Person {} {} deleted", firstName, lastName);
 			return ResponseEntity.ok().body(personInDB);

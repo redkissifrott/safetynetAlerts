@@ -7,8 +7,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.Optional;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -73,9 +71,8 @@ public class FirestationControllerIT {
 	@Order(4)
 	@Rollback(false)
 	public void updateFirestationNotFoundTest() throws Exception {
-		mockMvc.perform(put("/firestation/not my address").contentType(MediaType.APPLICATION_JSON)
-				.content("{ \"station\":\"7\" }").accept(MediaType.APPLICATION_JSON)).andExpect(status().isNotFound())
-				.andExpect(MockMvcResultMatchers.jsonPath("$").doesNotExist());
+		mockMvc.perform(put("/firestation/not my address").contentType(MediaType.APPLICATION_JSON).content("7")
+				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isNotFound());
 	}
 
 	@Test
@@ -83,8 +80,8 @@ public class FirestationControllerIT {
 	@Rollback(false)
 	public void deleteFirestationTest() throws Exception {
 		mockMvc.perform(delete("/firestation/my address")).andExpect(status().isOk());
-		Optional<Firestation> deletedFirestation = firestationService.getFirestation("my address");
-		assertThat(deletedFirestation).isEmpty();
+		Firestation deletedFirestation = firestationService.getFirestation("my address");
+		assertThat(deletedFirestation).isNull();
 
 	}
 
@@ -94,8 +91,8 @@ public class FirestationControllerIT {
 	public void deleteFirestationNotFoundTest() throws Exception {
 		mockMvc.perform(delete("/firestation/not my address").accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound());
-		Optional<Firestation> deletedFirestation = firestationService.getFirestation("my address");
-		assertThat(deletedFirestation).isNotEmpty();
+		Firestation deletedFirestation = firestationService.getFirestation("my address");
+		assertThat(deletedFirestation).isNotNull();
 	}
 
 }
