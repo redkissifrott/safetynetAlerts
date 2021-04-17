@@ -54,9 +54,7 @@ public class StationPersonsService {
 //			StationPersonsDto stationsPerson = new StationPersonsDto(listPersonsByStationDto, children, adults);
 			List<PersonMedicalrecordDto> listPersonsByStation = personMedicalrecordDtoService
 					.getPersonsMedicalrecordByAddresses(addresses);
-			System.out.println(listPersonsByStation);
 			List<PersonByStationDto> listPersonsByStationDto = new ArrayList<PersonByStationDto>();
-			System.out.println(listPersonsByStationDto);
 			int children = 0;
 			int adults = 0;
 			for (PersonMedicalrecordDto personMedByStation : listPersonsByStation) {
