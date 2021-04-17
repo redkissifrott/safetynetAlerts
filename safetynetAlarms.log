@@ -1,0 +1,8 @@
+[INFO ] 2021-04-17 09:47:08.707 [main] SafetynetAlertApplication - Starting SafetynetAlertApplication using Java 11.0.10 on DESKTOP-1I583G2 with PID 12684 (C:\Users\redki\git\safetynetAlerts\target\classes started by RedKissiFrott in C:\Users\redki\git\safetynetAlerts)
+[DEBUG] 2021-04-17 09:47:08.718 [main] SafetynetAlertApplication - Running with Spring Boot v2.4.4, Spring v5.3.5
+[INFO ] 2021-04-17 09:47:08.721 [main] SafetynetAlertApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2021-04-17 09:47:22.225 [main] SafetynetAlertApplication - Started SafetynetAlertApplication in 14.58 seconds (JVM running for 18.696)
+[INFO ] 2021-04-17 09:47:30.359 [http-nio-8080-exec-2] StationPersonsController - Request : GET http://localhost:8080/phoneAlert?firestation=1
+[INFO ] 2021-04-17 09:47:30.517 [http-nio-8080-exec-2] StationPersonsController - Return : Body :[841-874-7784, 841-874-6512]
+[INFO ] 2021-04-17 09:47:42.360 [http-nio-8080-exec-3] StationPersonsController - Request : GET http://localhost:8080/phoneAlert?firestation=2
+[INFO ] 2021-04-17 09:47:42.374 [http-nio-8080-exec-3] StationPersonsController - Return : Body :[841-874-7512, 841-874-7878, 841-874-7458]
