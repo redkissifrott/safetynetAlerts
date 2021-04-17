@@ -6,8 +6,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.Optional;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -35,7 +33,7 @@ public class FirestationControllerTest {
 
 	@Test
 	public void updateFirestationTest() throws Exception {
-		Optional<Firestation> f = Optional.of(new Firestation(null, "my address", "7"));
+		Firestation f = new Firestation(null, "my address", "7");
 		when(firestationService.getFirestation("my address")).thenReturn(f);
 		mockMvc.perform(
 				put("/firestation/my address").contentType(MediaType.APPLICATION_JSON).content("{ \"station\":\"7\" }"))
@@ -44,7 +42,7 @@ public class FirestationControllerTest {
 
 	@Test
 	public void deleteFirestationTest() throws Exception {
-		Optional<Firestation> f = Optional.of(new Firestation(null, "my address", "7"));
+		Firestation f = new Firestation(null, "my address", "7");
 		when(firestationService.getFirestation("my address")).thenReturn(f);
 		mockMvc.perform(delete("/firestation/my address")).andExpect(status().isOk());
 	}
