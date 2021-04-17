@@ -10,23 +10,29 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import fr.redkissifrott.safetynetAlerts.dto.PersonMedicalrecordDto;
-import fr.redkissifrott.safetynetAlerts.service.PersonMedicalrecordService;
+import fr.redkissifrott.safetynetAlerts.dto.PersonInfoDto;
+import fr.redkissifrott.safetynetAlerts.service.PersonInfoService;
 
-@WebMvcTest(controllers = PersonMedicalrecordController.class)
-public class PersonMedicalrecordControllerTest {
+@WebMvcTest(controllers = PersonInfoController.class)
+public class PersonInfoControllerTest {
 
 	@Autowired
 	private MockMvc mockMvc;
 
 	@MockBean
-	private PersonMedicalrecordService personMedicalrecordService;
+	private PersonInfoService personMedicalrecordService;
 
 	@Test
 	public void getPersonMedicalrecordDtoTest() throws Exception {
-		PersonMedicalrecordDto p = new PersonMedicalrecordDto();
-		when(personMedicalrecordService.getPersonMedicalrecord("FirstName", "LastName")).thenReturn(p);
+		PersonInfoDto p = new PersonInfoDto();
+		when(personMedicalrecordService.getPersonInfo("FirstName", "LastName")).thenReturn(p);
 		mockMvc.perform(get("/personInfo?firstName=FirstName&lastName=LastName")).andExpect(status().isOk());
+	}
+
+	@Test
+	public void getPersonMedicalrecordDtoNotFoundTest() throws Exception {
+		when(personMedicalrecordService.getPersonInfo("FirstName", "LastName")).thenReturn(null);
+		mockMvc.perform(get("/personInfo?firstName=FirstName&lastName=LastName")).andExpect(status().isNotFound());
 	}
 
 }
