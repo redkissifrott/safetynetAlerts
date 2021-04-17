@@ -1,5 +1,7 @@
 package fr.redkissifrott.safetynetAlerts.dto;
 
+import java.time.LocalDate;
+
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -16,12 +18,22 @@ public class PersonMedicalrecordDto {
 
 	private String lastName;
 
-	private Integer age;
+	private String address;
+
+	private String city;
+
+	private String zip;
+
+	private LocalDate birthdate;
+
+	private String phone;
 
 	private String email;
 
 	private String[] medications;
 
 	private String[] allergies;
+
+	private Integer age;
 
 }
