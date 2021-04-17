@@ -1,5 +1,6 @@
 package fr.redkissifrott.safetynetAlerts.controller.IT;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -11,10 +12,11 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class PersonMedicalrecordIT {
+public class PersonInfoIT {
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -23,7 +25,14 @@ public class PersonMedicalrecordIT {
 	@AutoConfigureTestDatabase(replace = Replace.NONE)
 	public void getPersonMedicalrecordDtoTest() throws Exception {
 		mockMvc.perform(get("/personInfo?firstName=John&lastName=Boyd")).andExpect(status().isOk())
-				.andExpect(content().contentType("application/json"));
+				.andExpect(content().contentType("application/json"))
+				.andExpect(MockMvcResultMatchers.jsonPath("$.firstName", is("John")));
+	}
+
+	@Test
+	@AutoConfigureTestDatabase(replace = Replace.NONE)
+	public void getPersonMedicalrecordDtoNotFoundTest() throws Exception {
+		mockMvc.perform(get("/personInfo?firstName=NotJohn&lastName=Boyd")).andExpect(status().isNotFound());
 	}
 
 }
