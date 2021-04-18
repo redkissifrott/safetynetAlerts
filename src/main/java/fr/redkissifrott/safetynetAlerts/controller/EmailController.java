@@ -12,41 +12,40 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.redkissifrott.safetynetAlerts.service.PhoneAlertService;
+import fr.redkissifrott.safetynetAlerts.service.EmailService;
 
 /**
  * 
- * Controller for PhoneAlert
+ * Controller for Email list by city
  * 
  * @author RedKissiFrott
- * 
  *
  */
 @RestController
-public class PhoneAlertController {
+public class EmailController {
 
 	private final Logger logger = LoggerFactory.getLogger(StationPersonsController.class);
 
 	@Autowired
-	private PhoneAlertService phoneAlertService;
+	private EmailService emailService;
 
 	/**
 	 * 
-	 * Read - Get list of phones by stations
+	 * Read - Get list of emails by city
 	 * 
-	 * @param stationNumber
-	 * @return Set of phones
+	 * @param city
+	 * @return Set of emails
 	 */
-	@RequestMapping(value = "/phoneAlert", params = { "firestation" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/communityEmail", params = { "city" }, method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseEntity<Set<String>> getPhoneAlert(@RequestParam("firestation") final String stationNumber) {
-		logger.info("Request : GET http://localhost:8080/phoneAlert?firestation={}", stationNumber);
-		Set<String> phonesByStation = phoneAlertService.getPhonesByStation(stationNumber);
+	public ResponseEntity<Set<String>> getPhoneAlert(@RequestParam("city") final String city) {
+		logger.info("Request : GET http://localhost:8080/communityEmail?city={}", city);
+		Set<String> phonesByStation = emailService.getEmailsByCity(city);
 		if (phonesByStation != null) {
 			logger.info("Return : Body :{}", phonesByStation);
 			return ResponseEntity.ok().body(phonesByStation);
 		} else {
-			logger.error("Station {} not found in DB", stationNumber);
+			logger.error("Citycommunity {} not found in DB", city);
 			return ResponseEntity.notFound().build();
 		}
 	}
