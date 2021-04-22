@@ -33,7 +33,7 @@ public class FirestationControllerTest {
 
 	@Test
 	public void updateFirestationTest() throws Exception {
-		Firestation f = new Firestation(null, "my address", "7");
+		Firestation f = new Firestation("my address", "7");
 		when(firestationService.getFirestation("my address")).thenReturn(f);
 		mockMvc.perform(
 				put("/firestation/my address").contentType(MediaType.APPLICATION_JSON).content("{ \"station\":\"7\" }"))
@@ -42,7 +42,7 @@ public class FirestationControllerTest {
 
 	@Test
 	public void deleteFirestationTest() throws Exception {
-		Firestation f = new Firestation(null, "my address", "7");
+		Firestation f = new Firestation("my address", "7");
 		when(firestationService.getFirestation("my address")).thenReturn(f);
 		mockMvc.perform(delete("/firestation/my address")).andExpect(status().isOk());
 	}

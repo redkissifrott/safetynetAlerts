@@ -7,10 +7,10 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PersonMedicalrecordDtoServiceTest {
+class PersonMedicalrecordServiceTest {
 
 	@Autowired
-	PersonMedicalrecordDtoService tryPersonMed;
+	PersonMedicalrecordService tryPersonMed;
 
 	@Test
 	@AutoConfigureTestDatabase(replace = Replace.NONE)

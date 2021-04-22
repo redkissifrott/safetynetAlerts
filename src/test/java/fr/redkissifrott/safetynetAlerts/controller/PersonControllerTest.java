@@ -34,7 +34,7 @@ public class PersonControllerTest {
 
 	@Test
 	public void updatePersonTest() throws Exception {
-		Person p = new Person(null, "CreatedFirstName", "CreatedLastName", "1509 Culver St", "Culver", "97451",
+		Person p = new Person("CreatedFirstName", "CreatedLastName", "1509 Culver St", "Culver", "97451",
 				"841-874-6512", "jaboyd@email.com");
 		when(personService.getPerson("CreatedFirstName", "CreatedLastName")).thenReturn(p);
 		mockMvc.perform(put("/person/CreatedFirstName CreatedLastName").contentType(MediaType.APPLICATION_JSON).content(
@@ -44,7 +44,7 @@ public class PersonControllerTest {
 
 	@Test
 	public void deletePersonTest() throws Exception {
-		Person p = new Person(null, "CreatedFirstName", "CreatedLastName", "1509 Culver St", "Culver", "97451",
+		Person p = new Person("CreatedFirstName", "CreatedLastName", "1509 Culver St", "Culver", "97451",
 				"841-874-6512", "jaboyd@email.com");
 		when(personService.getPerson("CreatedFirstName", "CreatedLastName")).thenReturn(p);
 		mockMvc.perform(delete("/person/CreatedFirstName CreatedLastName")).andExpect(status().isOk());

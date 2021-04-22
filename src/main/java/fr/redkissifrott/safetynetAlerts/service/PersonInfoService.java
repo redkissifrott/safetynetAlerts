@@ -11,7 +11,7 @@ import fr.redkissifrott.safetynetAlerts.dto.PersonMedicalrecordDto;
 public class PersonInfoService {
 
 	@Autowired
-	PersonMedicalrecordDtoService personMedicalrecordDtoService;
+	PersonMedicalrecordService personMedicalrecordDtoService;
 
 	public PersonInfoDto getPersonInfo(String firstName, String lastName) {
 		PersonMedicalrecordDto personMedicalrecordDto = personMedicalrecordDtoService
