@@ -18,7 +18,7 @@ public class StationPersonsService {
 	private FirestationService firestationService;
 
 	@Autowired
-	private PersonMedicalrecordDtoService personMedicalrecordDtoService;
+	private PersonMedicalrecordService personMedicalrecordDtoService;
 
 	public StationPersonsDto getStationPersons(String stationNumber) {
 

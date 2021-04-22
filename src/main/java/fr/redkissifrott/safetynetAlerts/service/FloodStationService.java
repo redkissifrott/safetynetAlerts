@@ -21,7 +21,7 @@ public class FloodStationService {
 	FirestationService firestationService;
 
 	@Autowired
-	PersonMedicalrecordDtoService personMedicalrecordDtoService;
+	PersonMedicalrecordService personMedicalrecordDtoService;
 
 	@Autowired
 	AddressPersonsStationService addressPersonsStationService;

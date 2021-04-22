@@ -16,7 +16,7 @@ import fr.redkissifrott.safetynetAlerts.dto.PersonMedicalrecordDto;
 public class AddressPersonsStationService {
 
 	@Autowired
-	PersonMedicalrecordDtoService personMedicalrecordDtoService;
+	PersonMedicalrecordService personMedicalrecordDtoService;
 
 	@Autowired
 	FirestationService firestationService;

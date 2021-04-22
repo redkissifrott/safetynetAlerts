@@ -1,13 +1,13 @@
 package fr.redkissifrott.safetynetAlerts.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
+import fr.redkissifrott.safetynetAlerts.util.FirstLastNameId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -18,19 +18,22 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@IdClass(FirstLastNameId.class)
 @Table(name = "persons")
 public class Person {
 
 	public Person() {
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	private Integer id;
 
+	@Id
 	@NotEmpty(message = "First name must not be empty")
 	private String firstName;
 
+	@Id
 	@NotEmpty(message = "Last name must not be empty")
 	private String lastName;
 
