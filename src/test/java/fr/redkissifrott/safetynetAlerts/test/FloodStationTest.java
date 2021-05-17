@@ -1,4 +1,4 @@
-package fr.redkissifrott.safetynetAlerts.service;
+package fr.redkissifrott.safetynetAlerts.test;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -14,22 +14,22 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class AddressPersonsStationIT {
+class FloodStationTest {
 
 	@Autowired
 	private MockMvc mockMvc;
 
 	@Test
 	@AutoConfigureTestDatabase(replace = Replace.NONE)
-	public void getAddressPersonsStationDtoTest() throws Exception {
-		mockMvc.perform(get("/fire?address=1509 Culver St")).andExpect(status().isOk())
+	public void getFloodStationsDtoTest() throws Exception {
+		mockMvc.perform(get("/flood/stations?stations=1")).andExpect(status().isOk())
 				.andExpect(content().contentType("application/json"));
 	}
 
-//	@Test
-//	@AutoConfigureTestDatabase(replace = Replace.NONE)
-//	public void getAddressPersonsStationDtoNotFoundTest() throws Exception {
-//		mockMvc.perform(get("/fire?address=Not1509 Culver St")).andExpect(status().isNotFound());
-//	}
+	@Test
+	@AutoConfigureTestDatabase(replace = Replace.NONE)
+	public void getFloodStationsDtoNotFoundTest() throws Exception {
+		mockMvc.perform(get("/flood/stations?stations=none")).andExpect(status().isOk());
+	}
 
 }

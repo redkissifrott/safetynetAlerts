@@ -41,13 +41,8 @@ public class EmailController {
 	public ResponseEntity<Set<String>> getPhoneAlert(@RequestParam("city") final String city) {
 		logger.info("Request : GET http://localhost:8080/communityEmail?city={}", city);
 		Set<String> phonesByStation = emailService.getEmailsByCity(city);
-		if (phonesByStation != null) {
-			logger.info("Return : Body :{}", phonesByStation);
-			return ResponseEntity.ok().body(phonesByStation);
-		} else {
-			logger.error("Citycommunity {} not found in DB", city);
-			return ResponseEntity.notFound().build();
-		}
+		logger.info("Return : Body :{}", phonesByStation);
+		return ResponseEntity.ok().body(phonesByStation);
 	}
 
 }

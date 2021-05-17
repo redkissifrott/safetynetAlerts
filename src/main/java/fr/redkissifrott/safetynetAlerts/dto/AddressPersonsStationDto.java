@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Component
 public class AddressPersonsStationDto {
-	private List<PersonForAddressPersonsStationDto> personForAdress;
+	private List<PersonForAddressPersonsStationDto> personForAddress;
 
 	private String station;
 }

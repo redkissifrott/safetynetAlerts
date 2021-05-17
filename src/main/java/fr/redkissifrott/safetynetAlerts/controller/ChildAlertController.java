@@ -32,13 +32,8 @@ public class ChildAlertController {
 	public ResponseEntity<ChildAlertDto> getChildAlertDto(@RequestParam("address") final String address) {
 		logger.info("Request : GET http://localhost:8080/childAlert?address={}", address);
 		ChildAlertDto childAlert = childAlertService.getChildAlert(address);
-		if (childAlert != null) {
-			logger.info("Return : Body :{}", childAlert);
-			return ResponseEntity.ok().body(childAlert);
-		} else {
-			logger.error("Station {} not found in DB", address);
-			return ResponseEntity.notFound().build();
-		}
+		logger.info("Return : Body :{}", childAlert);
+		return ResponseEntity.ok().body(childAlert);
 	}
 
 }

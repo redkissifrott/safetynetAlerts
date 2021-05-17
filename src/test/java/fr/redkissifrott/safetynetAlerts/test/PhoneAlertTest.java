@@ -1,4 +1,4 @@
-package fr.redkissifrott.safetynetAlerts.controller.IT;
+package fr.redkissifrott.safetynetAlerts.test;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -14,15 +14,15 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ChildAlertTest {
+public class PhoneAlertTest {
 
 	@Autowired
 	private MockMvc mockMvc;
 
 	@Test
 	@AutoConfigureTestDatabase(replace = Replace.NONE)
-	public void getChildAlertDtoTest() throws Exception {
-		mockMvc.perform(get("/childAlert?address=1509 Culver St")).andExpect(status().isOk())
+	public void getPhoneAlertTest() throws Exception {
+		mockMvc.perform(get("/phoneAlert?firestation=1")).andExpect(status().isOk())
 				.andExpect(content().contentType("application/json"));
 	}
 

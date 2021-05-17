@@ -1,4 +1,4 @@
-package fr.redkissifrott.safetynetAlerts.service;
+package fr.redkissifrott.safetynetAlerts.test;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -14,22 +14,16 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class FloodStationTest {
+public class EmailTest {
 
 	@Autowired
 	private MockMvc mockMvc;
 
 	@Test
 	@AutoConfigureTestDatabase(replace = Replace.NONE)
-	public void getFloodStationsDtoTest() throws Exception {
-		mockMvc.perform(get("/flood/stations?stations=2,3")).andExpect(status().isOk())
+	public void getAddressPersonsStationDtoTest() throws Exception {
+		mockMvc.perform(get("/communityEmail?city=Culver")).andExpect(status().isOk())
 				.andExpect(content().contentType("application/json"));
-	}
-
-	@Test
-	@AutoConfigureTestDatabase(replace = Replace.NONE)
-	public void getFloodStationsDtoNotFoundTest() throws Exception {
-		mockMvc.perform(get("/flood/stations?stations=13,17")).andExpect(status().isNotFound());
 	}
 
 }

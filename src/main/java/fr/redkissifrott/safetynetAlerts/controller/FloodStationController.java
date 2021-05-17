@@ -1,5 +1,6 @@
 package fr.redkissifrott.safetynetAlerts.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -38,10 +39,10 @@ public class FloodStationController {
 	@RequestMapping(value = "/flood/stations", params = { "stations" }, method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<List<FloodStationDto>> getFloodStationsDto(
-			@RequestParam("stations") final List<String> stations) {
+			@RequestParam("stations") final ArrayList<String> stations) {
 		logger.info("Request : GET http://localhost:8080/flood/stations?station={}", stations);
 		List<FloodStationDto> floodStation = floodStationService.getFloodStation(stations);
-		if (floodStationService != null) {
+		if (!floodStation.isEmpty()) {
 			logger.info("Return : Body :{}", floodStation);
 			return ResponseEntity.ok().body(floodStation);
 		} else {

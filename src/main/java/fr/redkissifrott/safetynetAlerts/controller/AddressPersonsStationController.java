@@ -40,13 +40,8 @@ public class AddressPersonsStationController {
 			@RequestParam("address") final String address) {
 		logger.info("Request : GET http://localhost:8080/fire?address={}", address);
 		AddressPersonsStationDto addressPersonsStation = addressPersonsStationService.getAddressPersonsStation(address);
-		if (addressPersonsStation != null) {
-			logger.info("Return : Body :{}", addressPersonsStation);
-			return ResponseEntity.ok().body(addressPersonsStation);
-		} else {
-			logger.error("Address {} not found in DB", address);
-			return ResponseEntity.notFound().build();
-		}
+		logger.info("Return : Body :{}", addressPersonsStation);
+		return ResponseEntity.ok().body(addressPersonsStation);
 	}
 
 }

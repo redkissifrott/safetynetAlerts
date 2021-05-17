@@ -1,4 +1,4 @@
-package fr.redkissifrott.safetynetAlerts.controller.IT;
+package fr.redkissifrott.safetynetAlerts.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;
@@ -28,7 +28,7 @@ import fr.redkissifrott.safetynetAlerts.service.FirestationService;
 @AutoConfigureTestDatabase
 @TestMethodOrder(OrderAnnotation.class)
 @AutoConfigureMockMvc
-public class FirestationControllerIT {
+public class FirestationTest {
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -47,16 +47,16 @@ public class FirestationControllerIT {
 	public void createFirestationTest() throws Exception {
 		mockMvc.perform(post("/firestation").contentType(MediaType.APPLICATION_JSON)
 				.content("{ \"address\":\"my address\", \"station\":\"7\" }").accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
+				.andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.address").exists());
 	}
 
-	@Test
-	@Order(2)
-	public void createFirestationConstraintViolationTest() throws Exception {
-		mockMvc.perform(post("/firestation").contentType(MediaType.APPLICATION_JSON).content("{ \"station\":\"7\" }")
-				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isBadRequest())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.id").doesNotExist());
-	}
+//	@Test
+//	@Order(2)
+//	public void createFirestationConstraintViolationTest() throws Exception {
+//		mockMvc.perform(post("/firestation").contentType(MediaType.APPLICATION_JSON).content("{ \"station\":\"7\" }")
+//				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isBadRequest())
+//				.andExpect(MockMvcResultMatchers.jsonPath("$.id").doesNotExist());
+//	}
 
 	@Test
 	@Order(3)
